@@ -28,3 +28,5 @@ Route::middleware('verified')->group(function () {
 // {
 //  $this->middleware(['auth', 'verified']);
 // }
+
+Route::resource('questions', 'QuestionsController');
