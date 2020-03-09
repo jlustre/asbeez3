@@ -23,20 +23,20 @@
 	}
 
 	.status {
-		.unanswered {
-			border: 1px solid #E6E9EC; 
+		&.unanswered {
+			border: 1px solid $light-gray; 
 			padding: 0 5px;
 		}
 
-		.answered {
-			border: 1px solid rgb(95, 187, 126); 
-			color: rgb(95, 187, 126);
+		&.answered {
+			border: 1px solid $color-green; 
+			color: $color-green;
 			padding: 0 5px;
 		}
 
-		.answered-accepted {
-			background: rgb(95, 187, 126);
-			color: #FFFFFF;
+		&.answered-accepted {
+			background: $color-green;
+			color: $white;
 			padding: 0 5px;
 		}
 	}
