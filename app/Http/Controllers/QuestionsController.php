@@ -73,6 +73,11 @@ class QuestionsController extends Controller
      */
     public function edit(Question $question)
     {
+        //see AuthServiceProvider for settings
+        if(\Gate::denies('update-question', $question)) {
+            abort(403, "Edit Access Denied");
+        }
+        
         return view('questions.edit', compact('question'));
     }
 
@@ -97,7 +102,11 @@ class QuestionsController extends Controller
      */
     public function destroy(Question $question)
     {
-        $question->delete();
-        return redirect()->route('questions.index')->with('success', "Your question has been deleted!");
+        //see AuthServiceProvider for settings
+        if(\Gate::allows('delete-question', $question)) {
+            $question->delete();
+            return redirect()->route('questions.index')->with('success', "Your question has been deleted!");
+        }
+        abort(403, "Delete Access Denied");
     }
 }
