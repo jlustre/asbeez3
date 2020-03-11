@@ -8,6 +8,11 @@ use App\Http\Requests\AskQuestionRequest;
 
 class QuestionsController extends Controller
 {
+    public function __construct() {
+        //This will prevent to access the pages except index and show
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -73,6 +78,7 @@ class QuestionsController extends Controller
      */
     public function edit(Question $question)
     {
+        $this->authorize('update', $question); //See QuestionPolicy update method
         return view('questions.edit', compact('question'));
     }
 
@@ -97,6 +103,7 @@ class QuestionsController extends Controller
      */
     public function destroy(Question $question)
     {
+        $this->authorize('delete', $question); //See QuestionPolicy delete method 
         $question->delete();
         return redirect()->route('questions.index')->with('success', "Your question has been deleted!");
     }
