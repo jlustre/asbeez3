@@ -26,7 +26,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         //use to have user friendly url
         Route::bind('slug', function($slug) {
-            return Question::where('slug', $slug)->first() ?? about(404);
+            return Question::with('answers.user')->where('slug', $slug)->first() ?? about(404);
         });
 
         parent::boot();

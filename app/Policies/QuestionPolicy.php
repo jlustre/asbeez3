@@ -67,7 +67,7 @@ class QuestionPolicy
     {
         //Allows delete only if the user is logged in and he owns the question
         // and there is no answer yet
-        return  $user->id ===  $question->user_id && $question->answers < 1;
+        return  $user->id ===  $question->user_id && $question->answers_count < 1;
     }
 
     /**
